@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 
 class Account_Manager(BaseUserManager):
         
-        def create_user(self ,username, real_name , phone_number , profile_pic_url ,bio , password):
+        def create_user(self ,username, real_name , phone_number , password):
                     if not username:
                         raise ValueError("User must have username")
                     if not real_name:
@@ -14,17 +14,12 @@ class Account_Manager(BaseUserManager):
                         raise ValueError("phone number is required")
                     if not password:
                         raise ValueError("password is must")
-                    if not profile_pic_url:
-                        profile_pic_url = " "
-                    if not bio :
-                        bio = " "
+                    
 
                     user =  self.model(
                            username = username,
                            phone_number = phone_number,
                            real_name = real_name,
-                           profile_pic_url = profile_pic_url,
-                           bio = bio
                     )    
 
                     user.set_password(password)
@@ -52,12 +47,12 @@ class Account_Manager(BaseUserManager):
 
 
 class gossips_account(AbstractBaseUser):
-            username =  models.CharField(max_length = 30 , unique=True)
-            real_name = models.CharField(max_length=30 , unique = False)
-            profile_pic_url = models.URLField(max_length=1000)
-            fcm_token = models.CharField(max_length = 2000 )
-            bio = models.TextField()
-            phone_number = models.CharField(max_length=20 , unique=True)
+            username =  models.CharField(blank= False,max_length = 30 , unique=True)
+            real_name = models.CharField(blank = False , max_length=30 , unique = False)
+            profile_pic_url = models.URLField(default = "https://google.com",max_length=1000)
+            fcm_token = models.CharField(blank = True,max_length = 2000 )
+            bio = models.TextField(blank = True)
+            phone_number = models.CharField(blank = False,max_length=20 , unique=True)
             
 
             date_joined = models.DateTimeField(verbose_name="date added",auto_now_add=True)
@@ -69,7 +64,7 @@ class gossips_account(AbstractBaseUser):
 
 
             USERNAME_FIELD = 'username'
-            REQUIRED_FIELDS = ['real_name','phone_number','profile_pic_url' ,'bio']
+            REQUIRED_FIELDS = ['real_name','phone_number']
 
 
             objects = Account_Manager()
