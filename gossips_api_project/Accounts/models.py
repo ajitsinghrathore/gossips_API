@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
+from .validators import  username_validator , real_name_validator , phone_validator
 
 
 
@@ -47,12 +48,14 @@ class Account_Manager(BaseUserManager):
 
 
 class gossips_account(AbstractBaseUser):
-            username =  models.CharField(blank= False,max_length = 30 , unique=True)
-            real_name = models.CharField(blank = False , max_length=30 , unique = False)
+
+
+            username =  models.CharField(blank= False,max_length = 30 , unique=True , validators=[username_validator])
+            real_name = models.CharField(blank = False , max_length=30 , unique = False , validators = [real_name_validator])
             profile_pic_url = models.URLField(default = "https://google.com",max_length=1000)
             fcm_token = models.CharField(blank = True,max_length = 2000 )
             bio = models.TextField(blank = True)
-            phone_number = models.CharField(blank = False,max_length=20 , unique=True)
+            phone_number = models.CharField(blank = False,max_length=20 , unique=True ,validators=[phone_validator])
             
 
             date_joined = models.DateTimeField(verbose_name="date added",auto_now_add=True)
