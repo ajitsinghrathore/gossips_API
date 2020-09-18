@@ -33,7 +33,7 @@ auth_token_for_twilio = 'b1bd7b709aaaa767fa4e12cbb8f92034'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://gossips-api.herokuapp.com/']
 
 
 # Application definition
@@ -139,7 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
 
 
 REST_FRAMEWORK = {
