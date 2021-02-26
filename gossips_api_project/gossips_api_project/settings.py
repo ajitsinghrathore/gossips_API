@@ -25,8 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4g0b2*(8cb^6w(o$#_*p5#0qtl2q)m(5_2tptmyl$m%bt%f@u+'
 
 
-account_sid_for_twilio = 'AC0ee7e5b5b59db6e3dd7bd1c9e2853cb6'
-auth_token_for_twilio = 'b1bd7b709aaaa767fa4e12cbb8f92034'
+account_sid_for_twilio = ''
+auth_token_for_twilio = ''
 
 
 
@@ -93,9 +93,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'CLIENT': {
-            'host': 'mongodb+srv://ajitsinghrathore1212:%23S4FXBC7@clustur0.gj7tf.mongodb.net/gossips_api_database?retryWrites=true&w=majority',
-            'username': 'ajitsinghrathore1212',
-            'password': '#S4FXBC7',
+            'host': '',
+            'username': '',
+            'password': '',
             'authMechanism': 'SCRAM-SHA-1'
         }
     
